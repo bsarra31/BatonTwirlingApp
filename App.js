@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import CreateAccount from './src/screens/CreateAccount';
 import Login from './src/screens/Login';
-//This is a comment jawn
+
 const App = () => {
   return (
     <View style={styles.container}>
