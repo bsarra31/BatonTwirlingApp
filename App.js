@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import CreateAccount from './src/screens/CreateAccount';
 import Login from './src/screens/Login';
 //That is bower's comment.
+//There is bower's comment.
 const App = () => {
   return (
     <View style={styles.container}>
