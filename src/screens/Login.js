@@ -11,7 +11,16 @@ const Login = () => {
 };
 
 const styles=StyleSheet.create({
-
+    container: {
+        flex: 1,
+        //backgroundColor: 'black',
+    },
+    textStyle: {
+        flex: 1,
+        backgroundcolor: 'blue',
+        color: 'black',
+        textShadowColor: 'black'
+    }
 });
 
 export default Login;
