@@ -6,8 +6,8 @@ import Login from './src/screens/Login';
 const App = () => {
   return (
     <View style={styles.container}>
-      <CreateAccount />
-      {/* <Login /> */}
+      {/* <CreateAccount /> */}
+      <Login />
     </View>
   );
 }
