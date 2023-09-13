@@ -1,6 +1,6 @@
 //IMPORTS
 import React, { useState } from 'react';
-import { View, Text, SafeAreaView, StatusBar, ScrollView, TouchableOpacity, Dimensions, useWindowDimensions } from 'react-native';
+import { View, Text, SafeAreaView, StatusBar, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import Themes from '../styles/Themes';
 import Containers from '../styles/Containers';
@@ -19,9 +19,10 @@ const CreateAccount = ({ navigation }) => {
     const signInOnPress = () => {
         console.log('Sign In button pressed.')
     }
-    const backOnPress = () => {
-        console.log('Back button pressed.')
+    const signupOnPress = () => {
+        console.log('Sign Up button pressed.')
     }
+
     //STATES
     const [date, setDate] = useState('');
 
@@ -36,7 +37,7 @@ const CreateAccount = ({ navigation }) => {
             <View style={Containers.backButtonContainer}>
                 <TouchableOpacity
                     style={styles.backButton}
-                    onPress={backOnPress}
+                    onPress={signInOnPress}
                 >
                     {/* Icon */}
                     <Feather
@@ -48,13 +49,14 @@ const CreateAccount = ({ navigation }) => {
             </View>
             {/* TITLE SECTION VIEW */}
             <View style={[Containers.titleContainer]}>
-                <Text style={Themes.primary}>Create Account</Text>
+                <Text style={[Themes.primary, Texts.titleText]}>Create Account</Text>
                 <Text style={Texts.descriptionText}>Enter account details below.</Text>
             </View>
             {/* INPUT FIELDS VIEW */}
             <View style={Containers.scrollContainer}>
                 <ScrollView
                     fadingEdgeLength={20}
+                    keyboardShouldPersistTaps='handled'
                 >
                     <Text style={[Texts.descriptionText, { color: '#000000' }]}>First Name</Text>
                     <UserInput
@@ -86,16 +88,19 @@ const CreateAccount = ({ navigation }) => {
             {/* BUTTON SECTIONS VIEW */}
             <View style={styles.submitArea}>
                 <TouchableOpacity
-                    onPress={signInOnPress}
+                    onPress={signupOnPress}
                     style={Containers.submitButtonContainer}
                 >
-                    <Text style={Texts.buttonText}>Sign In</Text>
+                    <Text style={Texts.buttonText}>Sign Up</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={forgotPassOnPress}
-                >
-                    <Text style={Texts.linkText}>Forgot Password?</Text>
-                </TouchableOpacity>
+                <View style={{ flexDirection: 'row', marginTop: 10 }}>
+                    <Text style={[Texts.descriptionText, { color: '#000000', marginHorizontal: 10 }]}>Already have an account?</Text>
+                    <TouchableOpacity
+                        onPress={signInOnPress}
+                    >
+                        <Text style={Texts.linkText}>Sign In</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </SafeAreaView>
     )
@@ -111,11 +116,11 @@ const styles = EStyleSheet.create({
         backgroundColor: '#C0BFC7'
     },
     submitArea: {
-        width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
         marginVertical: '10rem',
         paddingVertical: '10rem',
+        marginHorizontal: '20rem',
     },
 });
 

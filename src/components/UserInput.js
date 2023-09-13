@@ -10,7 +10,7 @@ const UserInput = (props) => {
     }
     return (
         <TextInput
-            style={Texts.input}
+            style={[Texts.input, {marginBottom: 10}]}
             placeholder={placeHolder}
             placeholderTextColor={'#C0BFC7'}
             keyboardType={keyboardType}

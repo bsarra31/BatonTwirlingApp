@@ -20,10 +20,14 @@ const Login = ({ navigation }) => {
         navigation.navigate('Sign Up')
     };
     const forgotPassOnPress = () => {
+        console.log('Forgot Password pressed.');
         //Popup to sent email reset password link?
     };
+    const signInOnPress = () => {
+        console.log('Sign In button pressed.');
         //Next page showing the content page! Yay!
     };
+
     //MAIN JSX
     return (
         <SafeAreaView style={Containers.container}>
@@ -35,7 +39,7 @@ const Login = ({ navigation }) => {
             <View style={[Containers.container, { paddingVertical: 20 }]} >
                 <Image
                     source={require('../../assets/images/Logo_Straight_Ticks.png')}
-                    style={[Themes.logo, {transform: [{rotate: '180deg'}]}]}
+                    style={[Themes.logo, { transform: [{ rotate: '180deg' }] }]}
                 />
             </View>
             {/* INPUT FIELDS VIEW */}
@@ -43,31 +47,39 @@ const Login = ({ navigation }) => {
                 <ScrollView
                     fadingEdgeLength={20}
                 >
-                    <Text style={[Texts.descriptionText, { color: '#000000' }]}>First Name</Text>
+                    <Text style={[Texts.descriptionText, { color: '#000000' }]}>Username</Text>
                     <UserInput
                         placeHolder='use@domain.com'
                         keyboardType='default'
                     />
-                    <Text style={[Texts.descriptionText, { color: '#000000' }]}>Last Name</Text>
+                    <Text style={[Texts.descriptionText, { color: '#000000' }]}>Password</Text>
                     <UserInput
                         placeHolder='Password'
                         keyboardType='default'
                     />
+                    <TouchableOpacity
+                        onPress={forgotPassOnPress}
+                    >
+                        <Text style={[Texts.descriptionText, { color: '#C0BFC7', textDecorationLine: 'underline', textAlign: 'right' }]}>Forgot Password?</Text>
+                    </TouchableOpacity>
                 </ScrollView>
             </View>
             {/* SIGN IN AREA VIEW */}
             <View style={styles.submitArea}>
                 <TouchableOpacity
                     onPress={signInOnPress}
-                    style={Containers.submitButtonContainer}
+                    style={[Containers.submitButtonContainer, { marginVertical: 10 }]}
                 >
                     <Text style={Texts.buttonText}>Sign In</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={forgotPassOnPress}
-                >
-                    <Text style={Texts.linkText}>Forgot Password?</Text>
-                </TouchableOpacity>
+                <View style={{ flexDirection: 'row', marginTop: 10 }}>
+                    <Text style={[Texts.descriptionText, { color: '#000000', marginHorizontal: 10 }]}>Don't have an account?</Text>
+                    <TouchableOpacity
+                        onPress={signUpOnPress}
+                    >
+                        <Text style={Texts.linkText}>Sign Up</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </SafeAreaView>
     )
