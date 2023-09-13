@@ -1,3 +1,4 @@
+//IMPORTS
 import React, { useState } from 'react';
 import { View, Text, SafeAreaView, StatusBar, ScrollView, TouchableOpacity, Dimensions, useWindowDimensions } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
@@ -7,33 +8,37 @@ import Texts from '../styles/Texts';
 import UserInput from '../components/UserInput';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
+//SETTING REM CONST. WITH LIBRARY
 const entireScreenWidth = Dimensions.get('window').width;
 EStyleSheet.build({ $rem: entireScreenWidth / 390 });
 
-const CreateAccount = () => {
+//MAIN FUNCTION
+const CreateAccount = ({ navigation }) => {
 
+    //BUTTON HANDLERS
     const signInOnPress = () => {
         console.log('Sign In button pressed.')
     }
     const backOnPress = () => {
         console.log('Back button pressed.')
     }
-    const forgotPassOnPress = () => {
-        console.log('Forgot Password pressed.')
-    }
-
+    //STATES
     const [date, setDate] = useState('');
 
+    //MAIN JSX
     return (
         <SafeAreaView style={Containers.container}>
+            {/* Status bar holds battery, time, etc. */}
             <StatusBar
                 barStyle='default'
             />
+            {/* BACK BUTTON VIEW */}
             <View style={Containers.backButtonContainer}>
                 <TouchableOpacity
                     style={styles.backButton}
                     onPress={backOnPress}
                 >
+                    {/* Icon */}
                     <Feather
                         name={'arrow-left'}
                         size={30}
@@ -41,10 +46,12 @@ const CreateAccount = () => {
                     />
                 </TouchableOpacity>
             </View>
+            {/* TITLE SECTION VIEW */}
             <View style={[Containers.titleContainer]}>
                 <Text style={Themes.primary}>Create Account</Text>
                 <Text style={Texts.descriptionText}>Enter account details below.</Text>
             </View>
+            {/* INPUT FIELDS VIEW */}
             <View style={Containers.scrollContainer}>
                 <ScrollView
                     fadingEdgeLength={20}
@@ -76,6 +83,7 @@ const CreateAccount = () => {
                     />
                 </ScrollView>
             </View>
+            {/* BUTTON SECTIONS VIEW */}
             <View style={styles.submitArea}>
                 <TouchableOpacity
                     onPress={signInOnPress}
@@ -111,4 +119,5 @@ const styles = EStyleSheet.create({
     },
 });
 
+//FUNCTION EXPORT
 export default CreateAccount;

@@ -1,3 +1,4 @@
+//IMPORTS
 import React, { useState } from 'react';
 import { View, Text, SafeAreaView, StatusBar, ScrollView, TouchableOpacity, Dimensions, Image } from 'react-native';
 import Texts from '../styles/Texts';
@@ -6,29 +7,35 @@ import UserInput from '../components/UserInput';
 import Themes from '../styles/Themes';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
+//SETTING REM CONST. WITH LIBRARY
 const entireScreenWidth = Dimensions.get('window').width;
 EStyleSheet.build({ $rem: entireScreenWidth / 390 });
 
-const Login = () => {
+//MAIN FUNCTION
+const Login = ({ navigation }) => {
 
-    const signInOnPress = () => {
-        console.log('Sign In button pressed.')
-    }
+    //BUTTON HANDLERS
+    const signUpOnPress = () => {
     const forgotPassOnPress = () => {
-        console.log('Forgot Password pressed.')
-    }
-
+        //Popup to sent email reset password link?
+    };
+        //Next page showing the content page! Yay!
+    };
+    //MAIN JSX
     return (
         <SafeAreaView style={Containers.container}>
+            {/* Status bar holds battery, time, etc. */}
             <StatusBar
                 barStyle='default'
             />
+            {/* LOGO VIEW */}
             <View style={[Containers.container, { paddingVertical: 20 }]} >
                 <Image
                     source={require('../../assets/images/Logo_Straight_Ticks.png')}
                     style={[Themes.logo, {transform: [{rotate: '180deg'}]}]}
                 />
             </View>
+            {/* INPUT FIELDS VIEW */}
             <View style={Containers.scrollContainer}>
                 <ScrollView
                     fadingEdgeLength={20}
@@ -45,6 +52,7 @@ const Login = () => {
                     />
                 </ScrollView>
             </View>
+            {/* SIGN IN AREA VIEW */}
             <View style={styles.submitArea}>
                 <TouchableOpacity
                     onPress={signInOnPress}
@@ -62,6 +70,7 @@ const Login = () => {
     )
 };
 
+//STYLE SHEET
 const styles = EStyleSheet.create({
     submitArea: {
         alignItems: 'center',
@@ -72,4 +81,5 @@ const styles = EStyleSheet.create({
     },
 });
 
+//FUNCTION EXPORT
 export default Login;
