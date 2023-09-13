@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, StatusBar, ScrollView, TouchableOpacity, Dimensions, TextInput } from 'react-native';
+import { View, Text, SafeAreaView, StatusBar, ScrollView, TouchableOpacity, Dimensions, useWindowDimensions } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
-import themes from '../styles/Themes';
+import Themes from '../styles/Themes';
+import Containers from '../styles/Containers';
+import Texts from '../styles/Texts';
+import UserInput from '../components/UserInput';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
-const SCREEN_WIDTH = Dimensions.get('window').width;
-const SCREEN_HEIGHT = Dimensions.get('window').height;
-const SCREEN_SCALE = Dimensions.get('window').scale;
-const SCREEN_FONTSCALE = Dimensions.get('window').fontScale;
+const entireScreenWidth = Dimensions.get('window').width;
+EStyleSheet.build({ $rem: entireScreenWidth / 390 });
 
 const CreateAccount = () => {
 
@@ -21,16 +23,15 @@ const CreateAccount = () => {
     }
 
     const [date, setDate] = useState('');
-    const { container, backButtonContainer, titleContainer, scrollContainer, descriptionText, backButton, buttonText, submitArea, password, submitButton, input } = styles
 
     return (
-        <SafeAreaView style={container}>
+        <SafeAreaView style={Containers.container}>
             <StatusBar
-                barStyle='dark-content'
+                barStyle='default'
             />
-            <View style={backButtonContainer}>
+            <View style={Containers.backButtonContainer}>
                 <TouchableOpacity
-                    style={backButton}
+                    style={styles.backButton}
                     onPress={backOnPress}
                 >
                     <Feather
@@ -40,138 +41,74 @@ const CreateAccount = () => {
                     />
                 </TouchableOpacity>
             </View>
-            <View style={titleContainer}>
-                <Text style={[themes.primary, {fontSize: 24}]}>Create Account</Text>
-                <Text style={descriptionText}>Enter account details below.</Text>
+            <View style={[Containers.titleContainer]}>
+                <Text style={Themes.primary}>Create Account</Text>
+                <Text style={Texts.descriptionText}>Enter account details below.</Text>
             </View>
-            <View style={scrollContainer}>
+            <View style={Containers.scrollContainer}>
                 <ScrollView
-                    keyboardDismissMode='on-drag'
+                    fadingEdgeLength={20}
                 >
-                    <Text style={[descriptionText, { color: '#000000' }]}>First Name</Text>
-                    <TextInput
-                        style={input}
-                        placeholder='John'
-                        placeholderTextColor={'#C0BFC7'}
+                    <Text style={[Texts.descriptionText, { color: '#000000' }]}>First Name</Text>
+                    <UserInput
+                        placeHolder='John'
                         keyboardType='default'
                     />
-                    <Text style={[descriptionText, { color: '#000000' }]}>Last Name</Text>
-                    <TextInput
-                        style={input}
-                        placeholder='Doe'
-                        placeholderTextColor={'#C0BFC7'}
+                    <Text style={[Texts.descriptionText, { color: '#000000' }]}>Last Name</Text>
+                    <UserInput
+                        placeHolder='Doe'
                         keyboardType='default'
                     />
-                    <Text style={[descriptionText, { color: '#000000' }]}>Date of Birth</Text>
-                    <TextInput
-                        style={input}
-                        placeholder='mm/dd/yyyy'
-                        placeholderTextColor={'#C0BFC7'}
+                    <Text style={[Texts.descriptionText, { color: '#000000' }]}>Date of Birth</Text>
+                    <UserInput
+                        placeHolder='mm/dd/yyyy'
                         keyboardType='numeric'
                     />
-                    <Text style={[descriptionText, { color: '#000000' }]}>Email</Text>
-                    <TextInput
-                        style={input}
-                        placeholder='user@domain.com'
-                        placeholderTextColor={'#C0BFC7'}
+                    <Text style={[Texts.descriptionText, { color: '#000000' }]}>Email</Text>
+                    <UserInput
+                        placeHolder='user@domain.com'
                         keyboardType='default'
                     />
-                    <Text style={[descriptionText, { color: '#000000' }]}>Password</Text>
-                    <TextInput
-                        style={input}
-                        placeholder='Password'
-                        placeholderTextColor={'#C0BFC7'}
+                    <Text style={[Texts.descriptionText, { color: '#000000' }]}>Password</Text>
+                    <UserInput
+                        placeHolder='Password' //NOTE!! the 'Password' placeholder makes the text entry secure, so don't change that LOL
                         keyboardType='default'
-                        secureTextEntry={true}
                     />
                 </ScrollView>
             </View>
-            <View style={submitArea}>
+            <View style={styles.submitArea}>
                 <TouchableOpacity
                     onPress={signInOnPress}
-                    style={submitButton}
+                    style={Containers.submitButtonContainer}
                 >
-                    <Text style={buttonText}>Sign In</Text>
+                    <Text style={Texts.buttonText}>Sign In</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={forgotPassOnPress}
                 >
-                    <Text style={password}>Forgot Password?</Text>
+                    <Text style={Texts.linkText}>Forgot Password?</Text>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>
     )
 };
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#f7f0ea',
-    },
-    scrollContainer: {
-        flex: 5,
-        marginHorizontal: 20,
-    },
+const styles = EStyleSheet.create({
     backButton: {
         alignItems: 'center',
         justifyContent: 'center',
-        width: 40,
-        height: 40,
-        borderRadius: 100,
+        width: '40rem',
+        height: '40rem',
+        borderRadius: '100rem',
         backgroundColor: '#C0BFC7'
     },
-    backButtonContainer: {
-        marginHorizontal: 20,
-        marginTop: 20,
-        justifyContent: 'center',
-    },
-    titleContainer: {
-        flex: 1,
-        marginHorizontal: 20,
-        justifyContent: 'center',
-    },
-    titleText: {
-        color: '#611f66',
-        fontSize: 32,
-        fontWeight: 'bold',
-    },
-    descriptionText: {
-        color: '#197278',
-        fontSize: 16,
-    },
-    input: {
-        borderColor: '#000000',
-        borderRadius: 6,
-        borderWidth: 1,
-        fontSize: 16,
-        height: 48,
-        paddingLeft: 10,
-    },
-    submitButton: {
-        width: 327,
-        height: 48,
-        backgroundColor: '#611f66',
-        borderRadius: 6,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    password: {
-        color: '#197278',
-        fontSize: 16,
-        marginVertical: 20,
-        textDecorationLine: 'underline',
-    },
     submitArea: {
-        flex: 1,
+        width: '100%',
         alignItems: 'center',
-        justifyContent: 'flex-start',
-        marginVertical: 10,
+        justifyContent: 'center',
+        marginVertical: '10rem',
+        paddingVertical: '10rem',
     },
-    buttonText: {
-        color: '#f7f0ea',
-        fontSize: 16,
-        fontWeight: 'bold',
-    }
 });
 
 export default CreateAccount;
