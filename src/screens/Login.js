@@ -16,6 +16,9 @@ const Login = ({ navigation }) => {
 
     //BUTTON HANDLERS
     const signUpOnPress = () => {
+        console.log('Sign Up button pressed.');
+        navigation.navigate('Sign Up')
+    };
     const forgotPassOnPress = () => {
         //Popup to sent email reset password link?
     };
