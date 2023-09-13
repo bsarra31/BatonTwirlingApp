@@ -14,6 +14,12 @@ const themes = StyleSheet.create({
     background: {
         color: '',
     },
+    logo: {
+        flex: 1,
+        width: null,
+        height: null,
+        resizeMode: 'contain',
+    },
 });
 
 export default themes;
