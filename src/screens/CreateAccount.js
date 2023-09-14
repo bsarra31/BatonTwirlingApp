@@ -1,5 +1,6 @@
 //IMPORTS
 import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { View, Text, SafeAreaView, StatusBar, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import Themes from '../styles/Themes';
@@ -13,15 +14,18 @@ const entireScreenWidth = Dimensions.get('window').width;
 EStyleSheet.build({ $rem: entireScreenWidth / 390 });
 
 //MAIN FUNCTION
-const CreateAccount = ({ navigation }) => {
+const CreateAccount = () => {
+
+    const navigation = useNavigation();
 
     //BUTTON HANDLERS
     const signInOnPress = () => {
-        console.log('Sign In button pressed.')
-    }
+        console.log('Sign In button pressed.');
+        navigation.goBack();
+    };
     const signupOnPress = () => {
-        console.log('Sign Up button pressed.')
-    }
+        console.log('Sign Up button pressed.');
+    };
 
     //STATES
     const [date, setDate] = useState('');
@@ -93,14 +97,6 @@ const CreateAccount = ({ navigation }) => {
                 >
                     <Text style={Texts.buttonText}>Sign Up</Text>
                 </TouchableOpacity>
-                <View style={{ flexDirection: 'row', marginTop: 10 }}>
-                    <Text style={[Texts.descriptionText, { color: '#000000', marginHorizontal: 10 }]}>Already have an account?</Text>
-                    <TouchableOpacity
-                        onPress={signInOnPress}
-                    >
-                        <Text style={Texts.linkText}>Sign In</Text>
-                    </TouchableOpacity>
-                </View>
             </View>
         </SafeAreaView>
     )
@@ -119,7 +115,8 @@ const styles = EStyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginVertical: '10rem',
-        paddingVertical: '10rem',
+        paddingTop: '10rem',
+        paddingBottom: '20rem',
         marginHorizontal: '20rem',
     },
 });

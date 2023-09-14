@@ -6,18 +6,21 @@ import Containers from '../styles/Containers';
 import UserInput from '../components/UserInput';
 import Themes from '../styles/Themes';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { useNavigation } from '@react-navigation/native';
 
 //SETTING REM CONST. WITH LIBRARY
 const entireScreenWidth = Dimensions.get('window').width;
 EStyleSheet.build({ $rem: entireScreenWidth / 390 });
 
 //MAIN FUNCTION
-const Login = ({ navigation }) => {
+const Login = () => {
+
+    const navigation = useNavigation();
 
     //BUTTON HANDLERS
     const signUpOnPress = () => {
         console.log('Sign Up button pressed.');
-        navigation.navigate('Sign Up')
+        navigation.navigate('Signup')
     };
     const forgotPassOnPress = () => {
         console.log('Forgot Password pressed.');
@@ -70,7 +73,7 @@ const Login = ({ navigation }) => {
                     onPress={signInOnPress}
                     style={[Containers.submitButtonContainer, { marginVertical: 10 }]}
                 >
-                    <Text style={Texts.buttonText}>Sign In</Text>
+                    <Text style={[Texts.buttonText,{fontFamily: 'Open-Sans-Bold'}]}>Sign In</Text>
                 </TouchableOpacity>
                 <View style={{ flexDirection: 'row', marginTop: 10 }}>
                     <Text style={[Texts.descriptionText, { color: '#000000', marginHorizontal: 10 }]}>Don't have an account?</Text>

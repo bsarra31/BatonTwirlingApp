@@ -8,7 +8,6 @@ const texts = EStyleSheet.create({
     titleText: {
         color: '#611f66',
         fontSize: '32rem',
-        fontWeight: 'bold',
     },
     buttonText: {
         color: '#f7f0ea',
